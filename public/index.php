@@ -4,6 +4,8 @@ use app\library\Router;
 
 require '../vendor/autoload.php';
 
+session_start();
+
 try {
   $route = new Router;
   $route->add('/',            'GET', 'HomeController:index');

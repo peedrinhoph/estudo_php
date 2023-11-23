@@ -5,17 +5,22 @@ namespace app\library;
 class Cart
 {
 
-  public function add(Product $product)
+  private function init()
   {
-
     if (!isset($_SESSION['cart'])) {
       $_SESSION['cart'] = [];
     }
+  }
+
+  public function add(Product $product)
+  {
+    $this->init();
 
     $inCart = false;
     $this->setTotal($product);
-    if (count($this->getCart()) > 0) {
-      foreach ($this->getCart() as $productInCart) {
+    $cart = CartInfo::getCart();
+    if (count($cart) > 0) {
+      foreach ($cart as $productInCart) {
         if ($productInCart->getId() === $product->getId()) {
           $quantity = $productInCart->getQuantity() + $product->getQuantity();
           $productInCart->setQuantity($quantity);
@@ -36,7 +41,7 @@ class Cart
       $_SESSION['cart']['products'] = [];
     }
 
-    $_SESSION['cart']['products'][]  = $product;
+    $_SESSION['cart']['products'][$product->getSlug()]  = $product;
   }
 
   private function setTotal(Product $product)
@@ -47,25 +52,18 @@ class Cart
     $_SESSION['cart']['total'] += $product->getPrice() * $product->getQuantity();
   }
 
-  public function remove(int $id)
+  public function remove(string $slug)
   {
-    if (isset($_SESSION['cart']['products'])) {
-      foreach ($this->getCart() as $index => $product) {
-        if ($product->getId() === $id) {
-          unset($_SESSION['cart']['products'][$index]);
-          $_SESSION['cart']['total'] -= $product->getPrice() * $product->getQuantity();
-        }
-      }
+    if (array_key_exists($slug, $_SESSION['cart']['products'])) {
+      unset($_SESSION['cart']['products'][$slug]);
     }
   }
 
-  public function getCart()
+  public function update(string $slug, string|int $quantity)
   {
-    return $_SESSION['cart']['products'] ?? [];
-  }
-
-  public function getTotal()
-  {
-    return $_SESSION['cart']['total'] ?? 0;
+    if (array_key_exists($slug, $_SESSION['cart']['products'])) {
+      $product = $_SESSION['cart']['products'][$slug];
+      $product->setQuantity($quantity);
+    }
   }
 }
