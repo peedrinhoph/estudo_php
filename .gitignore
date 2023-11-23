@@ -1,0 +1,10 @@
+.env
+vendor/*
+nbproject/*
+app/data/tmp/*
+config/database.php
+data/tmp/*
+.idea/*
+.project
+.DS_Store
+composer.lock
