@@ -2,6 +2,8 @@
 
 namespace app\library;
 
+use app\core\Route;
+
 class Redirect
 {
     public static function to(string $to)

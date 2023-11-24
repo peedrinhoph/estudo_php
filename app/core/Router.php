@@ -1,6 +1,8 @@
 <?php
 
-namespace app\library;
+namespace app\core;
+
+use app\library\Redirect;
 
 class Router
 {

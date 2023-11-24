@@ -9,6 +9,17 @@ use PDO;
 abstract class Model
 {
   protected static string $table;
+  protected array $attributes = [];
+
+  public function __set(string $property, string $value)
+  {
+    $this->attributes[$property] = $value;
+  }
+
+  public function __get(string $property)
+  {
+    return $this->attributes[$property];
+  }
 
   public static function all(string $fields = '*')
   {
@@ -25,7 +36,7 @@ abstract class Model
 
       Transaction::close();
     } catch (PDOException $e) {
-        var_dump($e->getMessage());
+      var_dump($e->getMessage());
       Transaction::rollback();
     }
   }
