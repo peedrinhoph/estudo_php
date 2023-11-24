@@ -19,13 +19,14 @@ class CheckoutController
                 throw new Exception("Para fazer o checkout você precisa estar logado");
             }
 
-            $stripe = new StripeClient(Config::getEnv()['STRIPE_KEY']);
+            $ENV = Config::getEnv();
+            $stripe = new StripeClient($ENV['STRIPE_KEY']);
 
-            // $baseUrl = $ENV['BASE_URL'];
+            $baseUrl = $ENV['BASE_URL'];
             $items = [
                 'mode' => 'payment',
-                'success_url' => "http://localhost:80/success",
-                'cancel_url' => "http://localhost:80/cancel",
+                'success_url' => "{$baseUrl}/success",
+                'cancel_url' => "{$baseUrl}/cancel",
             ];
 
             foreach (CartInfo::getCart() as $product) {
