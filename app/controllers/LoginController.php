@@ -26,7 +26,7 @@ class LoginController
         if (!$user) {
             throw new Exception("Usuário ou senha inválidos");
         }
-
+        // var_dump(password_hash('123', PASSWORD_DEFAULT));
         if (!password_verify($password, $user->password)) {
             throw new Exception("Usuário ou senha inválidos");
         }

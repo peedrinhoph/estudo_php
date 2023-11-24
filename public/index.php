@@ -1,13 +1,8 @@
 <?php
 
-use app\library\Router;
-
-require '../vendor/autoload.php';
-
-session_start();
+require './bootstrap.php';
 
 try {
-  $route = new Router;
   $route->add('/',            'GET', 'HomeController:index');
   $route->add('/cart',        'GET', 'CartController:index');
   $route->add('/cart/add',    'GET', 'CartController:add');

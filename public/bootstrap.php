@@ -1,5 +1,6 @@
 <?php
 
+use app\library\Config;
 use app\library\Router;
 
 require '../vendor/autoload.php';
