@@ -1,10 +1,11 @@
 <?php
 
-namespace app\library;
+namespace app\core;
 
 use Exception;
 use League\Plates\Engine;
-use app\library\CartInfo;
+use app\services\AuthInfoService;
+use app\services\CartInfoService;
 
 class View
 {
@@ -26,8 +27,8 @@ class View
             throw new Exception("View {$view} does not exist");
         }
 
-        self::addInstances('cart', CartInfo::class);
-        self::addInstances('auth', Auth::class);
+        self::addInstances('cartInfoService', CartInfoService::class);
+        self::addInstances('authInfoService', AuthInfoService::class);
 
         $templates = new Engine($filePath);
         $templates->addData(['instances' => self::$instances]);

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\library;
+namespace app\core;
 
 readonly class Route
 {

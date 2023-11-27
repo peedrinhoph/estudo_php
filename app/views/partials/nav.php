@@ -8,9 +8,9 @@
       <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>
       <li class="nav-item">
-        <?php if ($instances['auth']::auth()) : ?>
+        <?php if ($instances['authInfoService']::isAuth()) : ?>
         <a class="nav-link">Bem vindo,
-          <?php echo $instances['auth']::auth()->fullName; ?>
+          <?php echo $instances['authInfoService']::auth()->fullName; ?>
         </a>
       <li class="nav-item">
         <a href="/logout" class="nav-link">Logout</a>
@@ -26,7 +26,7 @@
         <i class="bi-cart-fill me-1"></i>
         Cart
         <span class="badge bg-dark text-white ms-1 rounded-pill">
-          <?php echo $instances['cart']::getTotalproductsInCart(); ?>
+          <?php echo $instances['cartInfoService']::getTotalproductsInCart(); ?>
         </span>
       </button>
     </form>

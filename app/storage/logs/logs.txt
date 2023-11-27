@@ -1,0 +1,1 @@
+27/11/2023 20:41:47 (Database Connection Error) Arquivo: /var/www/app/database/Connection.php Linha: 22 Error:SQLSTATE[HY000] [2002] No route to host

@@ -7,18 +7,18 @@
 
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h3 class="fw-normal mb-0 text-black">Shopping Cart - R$
-            <?php echo number_format($instances['cart']::getTotal(), 2, ',', '.'); ?>
+            <?php echo number_format($instances['cartInfoService']::getTotal(), 2, ',', '.'); ?>
           </h3>
           <div>
             <!-- <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p> -->
           </div>
         </div>
 
-        <?php if ($instances['cart']::getTotalProductsInCart() <= 0) : ?>
+        <?php if ($instances['cartInfoService']::getTotalProductsInCart() <= 0) : ?>
           <h2>Nenhum produto no carrinho</h2>
         <?php endif;  ?>
 
-        <?php foreach ($instances['cart']::getCart() as $product) : ?>
+        <?php foreach ($instances['cartInfoService']::getCart() as $product) : ?>
           <div class="card rounded-3 mb-4">
             <div class="card-body p-4">
               <div class="row d-flex align-items-center">
@@ -65,7 +65,7 @@
             </div>
           <?php endforeach; ?>
 
-          <?php if ($instances['cart']::getTotalProductsInCart() > 0) : ?>
+          <?php if ($instances['cartInfoService']::getTotalProductsInCart() > 0) : ?>
 
             <div class="card">
               <div class="card-body">

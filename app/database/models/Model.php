@@ -3,12 +3,26 @@
 namespace app\database\models;
 
 use app\database\Transaction;
+use app\enums\EnumLog;
+use app\library\Log;
+use app\library\LoggerFile;
 use PDOException;
 use PDO;
 
 abstract class Model
 {
   protected static string $table;
+  protected array $attributes = [];
+
+  public function __set(string $property, string $value)
+  {
+    $this->attributes[$property] = $value;
+  }
+
+  public function __get(string $property)
+  {
+    return $this->attributes[$property];
+  }
 
   public static function all(string $fields = '*')
   {
@@ -25,7 +39,8 @@ abstract class Model
 
       Transaction::close();
     } catch (PDOException $e) {
-        var_dump($e->getMessage());
+      Log::create(new LoggerFile('logs', 'Arquivo: ' . $e->getFile() . ' Linha: ' .  $e->getLine() . ' Error:' . $e->getMessage(), EnumLog::DatabaseErrorConnection));
+      // var_dump($e->getMessage());
       Transaction::rollback();
     }
   }
@@ -45,6 +60,7 @@ abstract class Model
 
       Transaction::close();
     } catch (PDOException $e) {
+      Log::create(new LoggerFile('logs', 'Arquivo: ' . $e->getFile() . ' Linha: ' .  $e->getLine() . ' Error:' . $e->getMessage(), EnumLog::DatabaseErrorConnection));
       Transaction::rollback();
     }
   }
