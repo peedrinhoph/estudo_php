@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\library\View;
+use app\core\View;
 
 class StatusCheckoutController
 {
