@@ -8,3 +8,4 @@ data/tmp/*
 .project
 .DS_Store
 composer.lock
+app/storage/logs/logs.txt
