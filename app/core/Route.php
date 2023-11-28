@@ -2,13 +2,27 @@
 
 namespace app\core;
 
-readonly class Route
+use app\library\RouteOptions;
+
+class Route
 {
+    private ?RouteOptions $routeOptions = null;
+
     public function __construct(
         public string $uri,
         public string $request,
         public string $controller,
     ) {
+    }
+
+    public function addRouteGroupOptions(RouteOptions $routeOptions)
+    {
+        $this->routeOptions = $routeOptions;
+    }
+
+    public function getRouteOptionsInstance(): ?RouteOptions
+    {
+        return $this->routeOptions;
     }
 
     private function currentUri()
@@ -23,6 +37,12 @@ readonly class Route
 
     public function match()
     {
+
+        if($this->routeOptions->optionExist(('prefix'))){
+            $this->uri = rtrim("/{$this->routeOptions->execute('prefix')}{$this->uri}", '/');
+            // var_dump($this->uri);
+        }
+
         if (
             $this->uri === $this->currentUri() &&
             strtolower($this->request) === $this->currentRequest()

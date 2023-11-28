@@ -10,7 +10,7 @@ session_start();
 // $dotenv = Dotenv\Dotenv::createImmutable(dirname(__FILE__, 2));
 // $dotenv->load();
 
-$route = new Router;
+$router = new Router;
 
 if (Environment::Production->getEnvironment()) {
     ini_set('display_erros', 0);

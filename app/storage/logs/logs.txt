@@ -1,1 +1,37 @@
 28/11/2023 17:31:04 (Database Connection Error) Arquivo: /var/www/app/database/Connection.php Linha: 22 Error:SQLSTATE[HY000] [2002] Connection timed out
+28/11/2023 19:17:40 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:17:40 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:17:54 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:17:54 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:17:55 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:17:55 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:17:56 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:17:56 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:19:01 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:19:01 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:19:02 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:19:02 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:19:09 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:19:09 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:38:36 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:38:36 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:48:10 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:48:10 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:48:13 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:48:16 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:48:16 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:48:19 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:48:19 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:48:20 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:48:22 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:50:04 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:50:06 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:50:07 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:50:08 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:50:09 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:51:17 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:56:50 (Controller Not Found) Controller AdminController does not exis
+28/11/2023 19:56:50 (Controller Not Found) Arquivo: Router.php 
+28/11/2023 19:58:31 (Controller Not Found) Controller AdminController does not exis
+28/11/2023 20:03:53 (Controller Not Found) Controller UserController does not exis
+28/11/2023 20:04:07 (Controller Not Found) Controller AdminController does not exis
