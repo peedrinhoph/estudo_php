@@ -3,7 +3,7 @@
 try {
     $router->group(['prefix' => 'admin', 'controller' => 'admin', 'middlewares' => []], function() {
         $this->add('/', 'GET', 'AdminController:index');
-        $this->add('/user', 'GET', 'UserController:index');
+        $this->add('/user/(:numeric)/name/(:alpha)', 'GET', 'UserController:index');
     });
 
     $router->add('/',            'GET', 'HomeController:index');

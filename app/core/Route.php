@@ -2,14 +2,17 @@
 
 namespace app\core;
 
+use app\library\Uri;
 use app\library\RouteOptions;
+use app\library\RouteWildcard;
 
 class Route
 {
     private ?RouteOptions $routeOptions = null;
+    private ?Uri $uri = null;
+    private ?RouteWildcard $wildcard = null;
 
     public function __construct(
-        public string $uri,
         public string $request,
         public string $controller,
     ) {
@@ -25,28 +28,42 @@ class Route
         return $this->routeOptions;
     }
 
-    private function currentUri()
+    public function addRouteUri(Uri $uri)
     {
-        return $_SERVER['REQUEST_URI'] !== '/' ? rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/') : '/';
+        $this->uri = $uri;
     }
 
-    private function currentRequest()
+    public function getRouteUriInstance(): ?Uri
     {
-        return strtolower($_SERVER['REQUEST_METHOD']);
+        return $this->uri;
+    }
+
+    public function addRouteWildcard(RouteWildcard $wildcard)
+    {
+        $this->wildcard = $wildcard;
+    }
+
+    public function getRouteWildcardInstance(): ?RouteWildcard
+    {
+        return $this->wildcard;
     }
 
     public function match()
     {
 
-        if($this->routeOptions->optionExist(('prefix'))){
-            $this->uri = rtrim("/{$this->routeOptions->execute('prefix')}{$this->uri}", '/');
+        if ($this->routeOptions->optionExist(('prefix'))) {
+            $this->uri->setUri(rtrim("/{$this->routeOptions->execute('prefix')}{$this->uri->getUri()}", '/'));
             // var_dump($this->uri);
         }
 
-        if (
-            $this->uri === $this->currentUri() &&
-            strtolower($this->request) === $this->currentRequest()
-        ) {
+        $this->wildcard->replaceWildcardWithPattern($this->uri->getUri());
+        $wildcardReplaced = $this->wildcard->getWildcardReplaced();
+
+        if ($wildcardReplaced != $this->uri->getUri() && $this->wildcard->uriEqualToPattern($this->uri->currentUri(), $wildcardReplaced)) {
+            $this->uri->setUri($this->uri->currentUri());
+        }
+
+        if ($this->uri->getUri() === $this->uri->currentUri() && strtolower($this->request) === $this->uri->currentRequest()) {
             return $this;
         }
     }

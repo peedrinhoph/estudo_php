@@ -5,6 +5,8 @@ namespace app\core;
 use Closure;
 use app\library\Redirect;
 use app\library\RouteOptions;
+use app\library\RouteWildcard;
+use app\library\Uri;
 
 class Router
 {
@@ -16,7 +18,9 @@ class Router
         string $request,
         string $controller
     ) {
-        $route = new Route($uri, $request, $controller);
+        $route = new Route($request, $controller);
+        $route->addRouteUri(new Uri($uri));
+        $route->addRouteWildcard(new RouteWildcard);
         $route->addRouteGroupOptions(new RouteOptions($this->routeOptions));
 
         $this->routes[] = $route;
@@ -31,7 +35,7 @@ class Router
 
     public function init()
     {
-         
+
         foreach ($this->routes as $route) {
             if ($route->match()) {
                 Redirect::register($route);
@@ -39,6 +43,6 @@ class Router
             }
         }
 
-        return (new Controller)->call(new Route('/404', 'GET', 'NotFoundController:index'));
+        return (new Controller)->call(new Route( 'GET', 'NotFoundController:index'));
     }
 }
