@@ -6,6 +6,7 @@ use Exception;
 use app\library\Log;
 use app\enums\EnumLog;
 use app\library\LoggerFile;
+use app\library\Middleware;
 
 class Controller
 {
@@ -52,6 +53,9 @@ class Controller
             throw new Exception("Action {$action} does not exist");
         }
 
+        if ($route->getRouteOptionsInstance()->optionExist('middlewares')) {
+            (new Middleware($route->getRouteOptionsInstance()->execute('middlewares')))->execute();
+        }
 
         call_user_func_array([$controller, $action], [$route->getRouteWildcardInstance()->getParams()]);
     }

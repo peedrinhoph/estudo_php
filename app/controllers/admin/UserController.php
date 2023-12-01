@@ -6,6 +6,6 @@ class UserController
 {
     public function index($request)
     {
-        var_dump($request);
+        // var_dump($request);
     }
 }
