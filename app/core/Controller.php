@@ -51,6 +51,8 @@ class Controller
             Log::create(new LoggerFile('logs', "Action {$action} does not exist", EnumLog::ActionNotFound));
             throw new Exception("Action {$action} does not exist");
         }
-        call_user_func_array([$controller, $action], []);
+
+
+        call_user_func_array([$controller, $action], [$route->getRouteWildcardInstance()->getParams()]);
     }
 }

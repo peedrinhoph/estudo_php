@@ -13,8 +13,9 @@ class Route
     private ?RouteWildcard $wildcard = null;
 
     public function __construct(
-        public string $request,
-        public string $controller,
+        public readonly string $request,
+        public readonly string $controller,
+        public readonly array $routeAliases
     ) {
     }
 
@@ -61,6 +62,7 @@ class Route
 
         if ($wildcardReplaced != $this->uri->getUri() && $this->wildcard->uriEqualToPattern($this->uri->currentUri(), $wildcardReplaced)) {
             $this->uri->setUri($this->uri->currentUri());
+            $this->wildcard->paramsToArray($this->uri->getUri(), $wildcardReplaced, $this->routeAliases);
         }
 
         if ($this->uri->getUri() === $this->uri->currentUri() && strtolower($this->request) === $this->uri->currentRequest()) {

@@ -16,9 +16,10 @@ class Router
     public function add(
         string $uri,
         string $request,
-        string $controller
+        string $controller,
+        array  $routeAliases = []
     ) {
-        $route = new Route($request, $controller);
+        $route = new Route($request, $controller, $routeAliases);
         $route->addRouteUri(new Uri($uri));
         $route->addRouteWildcard(new RouteWildcard);
         $route->addRouteGroupOptions(new RouteOptions($this->routeOptions));
@@ -43,6 +44,6 @@ class Router
             }
         }
 
-        return (new Controller)->call(new Route( 'GET', 'NotFoundController:index'));
+        return (new Controller)->call(new Route( 'GET', 'NotFoundController:index', []));
     }
 }
