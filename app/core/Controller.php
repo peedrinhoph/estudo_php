@@ -52,11 +52,11 @@ class Controller
             Log::create(new LoggerFile('logs', "Action {$action} does not exist", EnumLog::ActionNotFound));
             throw new Exception("Action {$action} does not exist");
         }
-
-        if ($route->getRouteOptionsInstance()->optionExist('middlewares')) {
+        
+        if ($route->getRouteOptionsInstance()?->optionExist('middlewares')) {
             (new Middleware($route->getRouteOptionsInstance()->execute('middlewares')))->execute();
         }
 
-        call_user_func_array([$controller, $action], [$route->getRouteWildcardInstance()->getParams()]);
+        call_user_func_array([$controller, $action], [$route->getRouteWildcardInstance()?->getParams() ?? []]);
     }
 }

@@ -30,6 +30,14 @@ class Router
         return $this;
     }
 
+
+    public function group(array $routeGroupOptions, Closure $callback)
+    {
+        $this->routeOptions = $routeGroupOptions;
+        $callback->call($this);
+        $this->routeOptions = [];
+    }
+
     public function middleware(array $middlewares)
     {
         // var_dump(['middlewares' => $middlewares]);
@@ -40,11 +48,13 @@ class Router
         $this->route->addRouteGroupOptions(new RouteOptions($options));
     }
 
-    public function group(array $routeGroupOptions, Closure $callback)
+    public function options(array $options)
     {
-        $this->routeOptions = $routeGroupOptions;
-        $callback->call($this);
-        $this->routeOptions = [];
+        if (!empty($this->routeOptions)) {
+            $options = array_merge($this->routeOptions, $options);
+        }
+
+        $this->route->addRouteGroupOptions(new RouteOptions($options));
     }
 
     public function init()
